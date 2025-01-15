@@ -1,11 +1,8 @@
 public class ejer05 {
     public static void main(String[] args) {
-        //mostrar los multiplos de 4 desde el 1 asta el 100
-        for(int i=1; i<=100; i++){
-            if(i%4==0){
-                System.out.println(i);
-            }
-        }
+      /*Construir un programa que pida un año y luego determine si el año es bisiesto o no.
+      Tenga en cuenta que los años bisiestos son los números múltiplos de 4,
+      pero que no son múltiplos de 100 y si son múltiplos de 100 y múltiplos de 400 sí son bisiestos.*/
 
     }
 }
