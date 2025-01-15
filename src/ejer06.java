@@ -5,7 +5,7 @@ public class ejer06 {
         mínimo, de lo contrario escriba sólo el nombre.*/
 
         String nombre;
-        double salarioBasico, horasTrabajadas, salarioMensual, salarioMinimo = 877803;
+        double salarioBasico, horasTrabajadas, salarioMensual, salarioMinimo;
         java.util.Scanner teclado = new java.util.Scanner(System.in);
         System.out.println("Ingrese el nombre del empleado: ");
         nombre = teclado.nextLine();
