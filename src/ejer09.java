@@ -28,7 +28,7 @@ public class ejer09 {
             System.out.println("El valor total del envio es: " + (tarifa - promocion));
         } else {
             System.out.println("Tarifa: " + tarifa);
-            System.out.println("Promocion: " + promocion);
+            System.out.println("descuento: " + descuento);
             System.out.println("El valor total del envio es: " + (tarifa - descuento));
         }
 
