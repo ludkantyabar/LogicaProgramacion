@@ -7,14 +7,31 @@ public class ejer09 {
         System.out.println("Peso de la Mercaderia: ");
         double peso = teclado.nextDouble();
 
+        System.out.println("Valor de la mercaderia: ");
+        double valor = teclado.nextDouble();
+
+        System.out.println("Dia de la semana: ");
+        String dia = teclado.next();
+
+        System.out.println("Forma de pago: ");
+        String formaPago = teclado.next();
+
+        //calculos
         double tarifa = calcularTarifa(peso);
-        System.out.println("La tarifa a pagar es: " + tarifa);
+        double descuento = calcularDescuento(valor, tarifa);
+        double promocion = calcularPromocion(valor, dia, formaPago, tarifa);
 
-        double descuento = calcularDescuento(tarifa);
-        System.out.println("El descuento es: " + descuento);
+        //mostrar resultados
+        if (promocion > 0) {
+            System.out.println("Tarifa: " + tarifa);
+            System.out.println("Promocion: " + promocion);
+            System.out.println("El valor total del envio es: " + (tarifa - promocion));
+        } else {
+            System.out.println("Tarifa: " + tarifa);
+            System.out.println("Promocion: " + promocion);
+            System.out.println("El valor total del envio es: " + (tarifa - descuento));
+        }
 
-        double promocion = calcularPromocion(tarifa, "lunes", "tarjeta");
-        System.out.println("El valor a pagar es: " + (tarifa - descuento - promocion));
     }
 
     /*tarifas:
@@ -43,14 +60,14 @@ public class ejer09 {
      Si el valor de la mercancía es superior a 600.000 pero menor o igual a 1.000.000 de pesos se hace un descuento del 20% sobre el valor del envío.
      Si el valor de la mercancía es superior a 1.000.000 se hace un descuento del 30% sobre el valor del envío.
      */
-    public static double calcularDescuento(double valor) {
+    public static double calcularDescuento(double valor, double tarifa) {
         double descuento = 0;
         if (valor >= 300000 && valor <= 600000) {
-            descuento = valor * 0.10;
+            descuento = tarifa * 0.10;
         } else if (valor > 600000 && valor <= 1000000) {
-            descuento = valor * 0.20;
+            descuento = tarifa * 0.20;
         } else if (valor > 1000000) {
-            descuento = valor * 0.30;
+            descuento = tarifa * 0.30;
         }
         return descuento;
     }
@@ -59,15 +76,19 @@ public class ejer09 {
     Si es día de promoción (lunes) y paga con tarjeta propia del almacén, sólo paga el 50% del costo de envío.
     Si paga en efectivo y el valor de la mercancía es superior a 1.000.000, sólo paga el 60% del costo de envío.
      */
-    public static double calcularPromocion(double valor, String dia, String formaPago) {
+    public static double calcularPromocion(double valor, String dia, String formaPago, double tarifa) {
         double promocion = 0;
         if (dia.equals("lunes") && formaPago.equals("tarjeta")) {
-            promocion = valor * 0.50;
+            promocion = tarifa * 0.50;
         } else if (formaPago.equals("efectivo") && valor > 1000000) {
-            promocion = valor * 0.60;
+            promocion = tarifa * 0.60;
         }
         return promocion;
 
-
     }
+    //Si el cliente aplica a una promoción, no puede aplicar a un descuento. Se debe obtener el valor total del envío
+    //aplicando primero la promoción y luego el descuento.
+
+
+
 }
